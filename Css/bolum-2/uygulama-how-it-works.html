@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      #showcase {
+        background-image: url("manzara-2.jpg");
+        background-position: center;
+        height: 500px;
+        width: 100%;
+        padding: 10px;
+      }
+      #how-it-works {
+        padding: 10px;
+        text-align: center;
+      }
+      #how-it-works h2 {
+        color: #3e4555;
+        font-size: 30px;
+        font-weight: 300;
+      }
+      .main-header {
+        background-color: darksalmon;
+        padding: 8px 16px;
+      }
+      .main-nav {
+        display: inline-block;
+        width: calc(100% - 99px);
+        text-align: right;
+      }
+      .main-nav__items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .main-nav__item {
+        display: inline-block;
+        margin: 0px 10px;
+      }
+      .main-header__logo {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 21px;
+      }
+      .main-nav__item a {
+        text-decoration: none;
+        color: #fff;
+      }
+      .main-nav__item a:hover {
+        color: yellow;
+      }
+      .main-nav__item:hover::before {
+        color: yellow;
+      }
+
+      .main-nav__item a:active,
+      .main-nav__item:active::before {
+        color: #fff;
+      }
+      .main-nav__item::before {
+        content: "\2022";
+        color: #fff;
+      }
+      .main-nav__item__login a {
+        color: #fff;
+        background-color: rgb(12, 12, 185);
+        padding: 4px 16px;
+        border-radius: 8px;
+        border: 2px solid white;
+      }
+      .main-nav__item__login a:hover {
+        color: black;
+        border: 2px solid rgb(12, 12, 185);
+        background-color: #fff;
+      }
+      .main-nav__item__login::before {
+        content: none;
+        color: #fff;
+      }
+      .row {
+        margin-bottom: 40px;
+      }
+      .col {
+        display: inline-block;
+        width: 30%;
+        padding: 16px;
+        margin: 8px;
+      }
+      .icon-box h3 {
+        color: #3e4555;
+        font-size: 26px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <a href="" class="main-header__logo">Movieapp</a>
+      <nav class="main-nav">
+        <ul class="main_nav__items">
+          <li class="main-nav__item">
+            <a href="#">Filmler</a>
+          </li>
+          <li class="main-nav__item">
+            <a href="#">Diziler</a>
+          </li>
+          <li class="main-nav__item main-nav__item__login">
+            <a href="#">Login</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="showcase">
+        <h1>Welcome To Movieapp</h1>
+      </section>
+      <section id="how-it-works">
+        <div class="row">
+          <h2>How it works?</h2>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="row">
+          <div class="icon-box col">
+            <h3>Register</h3>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos
+              accusamus illo consectetur magni vel nam.
+            </p>
+          </div>
+          <div class="icon-box col">
+            <h3>Choose a Plan</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Laboriosam possimus illo eius sunt sint molestiae.
+            </p>
+          </div>
+          <div class="icon-box col">
+            <h3>Enjoy Movies</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Architecto numquam debitis saepe? Veniam, mollitia nam!,
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

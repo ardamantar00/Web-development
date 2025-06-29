@@ -1,0 +1,41 @@
+.btn {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 7px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition-duration: 0.6s; /*saniyenin onda 6 sı sürede gerçkelemiş oluyor*/
+}
+.btn-primary:hover {
+  background-color: #fff;
+  color: #fc997f;
+  border: 5px solid #fc997f;
+}
+.btn-outline-primary {
+  background-color: #fff;
+  color: #fc997f;
+  border: 5px solid #fc997f;
+}
+.btn-outline-primary:hover {
+  background-color: #fc997f;
+  color: #fff;
+  border: 5px solid #fc997f;
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  color: #fff;
+  border: 2px dashed #2e4c60;
+}
+.btn-outline-secondary {
+  background-color: #fff;
+  color: #fc997f;
+  border: 5px solid #fc997f;
+}
+.btn-outline-secondary:hover {
+  background-color: #2e4c60;
+  color: #fff;
+  border: 5px solid #2e4c60;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* a[class] {
+        background-color: red;
+      }
+      a[target] {
+        background-color: brown;
+      } */
+      /* [class] {
+        background-color: aqua;
+      } */
+
+      /* Attribute * selector
+      [class="active"] {
+        background-color: rgb(125, 0, 0);
+      } */
+      /*Attribute ~ selector sadece ayrık olanları seçer*/
+      /* [class~=":active"] {
+        background-color: aqua;
+      } */
+      /*Attribute '|'' selector ilgili class en başta olmalı boşluk kabul etmez*/
+      /* [class|=":active"] {
+        background-color: blue;
+      } */
+      /*Attribute '^' selector active sınıfına sahip elemanlardan birini seçer arada faklı class olursa diğer classları da alabilir
+       [class^="active"]{
+        background-color: aqua;
+        }
+       */
+      /*Attribute '$' selector sondayken çalışır */
+      [class$="active"] {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="span text active">Span Text</span>
+    <nav>
+      <a href="" target="_blank">Home</a>
+      <a href="" class="active">About</a>
+      <a href="" class="link">Contact</a>
+    </nav>
+  </body>
+</html>

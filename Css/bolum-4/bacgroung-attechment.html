@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+    }
+    .bg {
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed; /*Scroll aşağı inse bile resimlerin pozisyoonları ile oynamamış oluyoruz*/
+    }
+    .bg_img1 {
+      height: 100vh;
+      background-image: url("manzara-1.jpg");
+    }
+    .bg_img2 {
+      height: 50vh;
+      background-image: url("manzara-2.jpg");
+    }
+    .caption {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+    }
+    .caption .border {
+      background-color: #111;
+      color: #fff;
+      top: 50%;
+      padding: 20px;
+      font-size: 35px;
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+    .box {
+      background-color: #777;
+      background-color: #fff;
+      text-align: center;
+      padding: 50px 80px;
+    }
+  </style>
+  <body>
+    <div class="bg_img1">
+      <div class="caption">
+        <span class="border"> Lorem, ipsum.</span>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Lorem, ipsum dolor.</h3>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora amet,
+        quaerat veniam eaque, laudantium cum quam sequi reiciendis excepturi,
+        voluptas nobis saepe officiis esse? Praesentium blanditiis alias
+        obcaecati dolore itaque. Alias officia voluptas, aliquam nostrum
+        inventore repudiandae necessitatibus optio eaque nulla nobis blanditiis
+        quis harum itaque iusto minima at fugiat vel labore provident
+        voluptatibus aperiam dolores quos voluptate. Est, totam. Itaque quas
+        dolore odit dolorum excepturi voluptas quo reiciendis eos sequi sint
+        similique at harum adipisci aspernatur fugit nemo tempora maxime in,
+        inventore reprehenderit suscipit repellat velit, nam consequatur.
+        Aspernatur.
+      </p>
+    </div>
+    <div class="bg bg_img2">
+      <div class="caption">
+        <span class="border"> Lorem, ipsum.</span>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Lorem, ipsum dolor.</h3>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora amet,
+        quaerat veniam eaque, laudantium cum quam sequi reiciendis excepturi,
+        voluptas nobis saepe officiis esse? Praesentium blanditiis alias
+        obcaecati dolore itaque. Alias officia voluptas, aliquam nostrum
+        inventore repudiandae necessitatibus optio eaque nulla nobis blanditiis
+        quis harum itaque iusto minima at fugiat vel labore provident
+        voluptatibus aperiam dolores quos voluptate. Est, totam. Itaque quas
+        dolore odit dolorum excepturi voluptas quo reiciendis eos sequi sint
+        similique at harum adipisci aspernatur fugit nemo tempora maxime in,
+        inventore reprehenderit suscipit repellat velit, nam consequatur.
+        Aspernatur.
+      </p>
+    </div>
+  </body>
+</html>
