@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantik HTML Örneği</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      nav,
+      main,
+      footer,
+      aside,
+      section,
+      article {
+        padding: 20px;
+      }
+      header,
+      footer {
+        background-color: #f4f4f4;
+      }
+      nav a {
+        margin-right: 15px;
+        text-decoration: none;
+        color: #333;
+      }
+      aside {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-left: 2px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <h1>Benim Kişisel Blogum</h1>
+      <p>Web Geliştirme, Teknoloji ve Daha Fazlası</p>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+      <a href="#">Ana Sayfa</a>
+      <a href="#">Yazılar</a>
+      <a href="#">Hakkımda</a>
+      <a href="#">İletişim</a>
+    </nav>
+
+    <!-- ANA İÇERİK -->
+    <main>
+      <!-- ASIDE (YAN PANEL) -->
+      <aside>
+        <h2>Hızlı Bilgiler</h2>
+        <ul>
+          <li><mark>HTML</mark> öğrenmeye devam!</li>
+          <li>
+            <time datetime="2025-06-23">23 Haziran 2025</time> tarihinde
+            güncellendi
+          </li>
+          <li><a href="#">Yeni Projemi Gör</a></li>
+        </ul>
+      </aside>
+
+      <!-- BİR MAKALE -->
+      <article>
+        <header>
+          <h2>Semantik HTML Neden Önemlidir?</h2>
+          <p>
+            Yayınlanma Tarihi:
+            <time datetime="2025-06-22">22 Haziran 2025</time>
+          </p>
+        </header>
+
+        <!-- MAKALE BÖLÜMLERİ -->
+        <section>
+          <h3>1. Erişilebilirlik</h3>
+          <p>
+            Ekran okuyucular semantik etiketleri algılayabilir ve içeriği
+            kullanıcıya daha anlaşılır sunar.
+          </p>
+        </section>
+
+        <section>
+          <h3>2. SEO Performansı</h3>
+          <p>
+            Arama motorları sayfa yapısını daha iyi analiz eder ve içeriğin önem
+            derecesini kavrar.
+          </p>
+        </section>
+
+        <section>
+          <h3>3. Temiz Kod</h3>
+          <p>
+            Geliştiriciler için okunabilir, bakımı kolay ve sürdürülebilir HTML
+            yapısı sağlar.
+          </p>
+        </section>
+
+        <!-- GÖRSEL VE AÇIKLAMASI -->
+        <figure>
+          <img src="semantik-html.png" alt="Semantik HTML yapısı" width="500" />
+          <figcaption>
+            Şekil 1: Semantik HTML Etiketlerinin Kullanımı
+          </figcaption>
+        </figure>
+
+        <footer>
+          <p>
+            Yazar: Arda Mantar |
+            <a href="mailto:arda@example.com">Bana Ulaşın</a>
+          </p>
+        </footer>
+      </article>
+
+      <!-- BAŞKA BİR MAKALE -->
+      <article>
+        <header>
+          <h2>HTML5 Yenilikleri</h2>
+          <p>Yayınlanma: <time datetime="2025-06-20">20 Haziran 2025</time></p>
+        </header>
+
+        <section>
+          <p>
+            HTML5 ile gelen yeni etiketler sayesinde, artık daha anlamlı ve
+            güçlü web yapıları oluşturabiliyoruz.
+          </p>
+        </section>
+
+        <footer>
+          <p>Etiketler: <mark>HTML5</mark>, <mark>Web Geliştirme</mark></p>
+        </footer>
+      </article>
+    </main>
+
+    <!-- SAYFA ALTI -->
+    <footer>
+      <p>&copy; 2025 Tüm Hakları Saklıdır - Arda'nın Blogu</p>
+    </footer>
+  </body>
+</html>
