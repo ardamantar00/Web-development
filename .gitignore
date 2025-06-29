@@ -1,0 +1,18 @@
+# macOS sistem dosyaları
+.DS_Store
+
+# VS Code ayarları
+.vscode/
+
+# node.js modülleri (varsa)
+node_modules/
+
+# Log dosyaları
+*.log
+
+# Derleme ve geçici dosyalar
+dist/
+build/
+
+# Sistem dosyaları
+Thumbs.db
