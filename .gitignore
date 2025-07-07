@@ -4,8 +4,6 @@
 # VS Code ayarları
 .vscode/
 
-# node.js modülleri (varsa)
-node_modules/
 
 # Log dosyaları
 *.log
