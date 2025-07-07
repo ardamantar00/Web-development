@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+
+    <style>
+      h1 {
+        font-family: "Open Sans", sans-serif;
+        font-size: 3rem;
+        text-align: center;
+      }
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .gallery div {
+        flex-grow: 1;
+        margin: 3px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s ease-out;
+      }
+      img:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        overflow: hidden; /*divin dışına taşan elemanlar gösterilmez*/
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Gallery</h1>
+    <div class="gallery">
+      <div>
+        <img src="https://picsum.photos/200/300?random=1" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/200/300?random=2" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/200/300?random=3" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/200/400?random=4" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/400/500?random=5" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/400/400?random=6" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/300/500?random=7" />
+      </div>
+      <div>
+        <img src="https://picsum.photos/200/300?random=8" />
+      </div>
+    </div>
+  </body>
+</html>
