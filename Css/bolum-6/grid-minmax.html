@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: grid;
+        /* grid-template-columns: minmax(200px, 1fr) 1fr 1fr; minimum 200px genişlik eğer 200px in üstüne çıktığında ise diğer columnlar ile eşit genişlik alır */
+        /* grid-template-columns: repeat(3, minmax(200px, 1fr)); */
+        /*grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 200px alan mutlaka columna sığmak zorunda yer yoksa 1 kutu aşağı iner */
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(200px, 1fr)
+        ); /*İçerikler her kutuya eşit şekilde paylaştırılır*/
+        gap: 10px;
+      }
+      .item {
+        background-color: rgb(239, 243, 17);
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">box-1</div>
+      <div class="item">box-2</div>
+      <div class="item">box-3</div>
+    </div>
+  </body>
+</html>

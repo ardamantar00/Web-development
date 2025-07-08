@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        background-color: #034f84;
+        gap: 10px;
+        /* row-gap: 10px; */
+      }
+      .item {
+        background-color: burlywood;
+        color: #fff;
+        font-size: 25px;
+      }
+      .item:first-child {
+        /* grid-column-start: 2;
+        grid-column-end: 5; */
+        /* grid-row-start: 1;
+        grid-row-end: 3; */
+        /* grid-column: 2/5; start ve end parametrelerinin başlangıç ve bitişini tek bir satırda vermek içim
+        grid-row: 2/4; */
+        /* grid-column: 2 / span 3; */
+        grid-area: 1 / 2 / span 3 / span 4; /*grid-column ve grid-rowun birleştirerek kullanımı*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+    </div>
+  </body>
+</html>
