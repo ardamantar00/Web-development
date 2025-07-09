@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        color: #fff;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      #page1 {
+        background-color: blue;
+      }
+      #page2 {
+        background-color: rebeccapurple;
+      }
+      #page3 {
+        background-color: coral;
+      }
+      .page {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .page h1 {
+        font-size: 5rem;
+        margin: 2rem;
+      }
+      .page p {
+        font-size: 1.5rem;
+      }
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: #f4f4f4;
+        color: #333;
+        text-decoration: none;
+        border: 2px solid #000;
+        font-size: 1.2rem;
+        border-radius: 50%;
+        transition: all 0.2s ease-in;
+      }
+      .btn:hover {
+        background-color: #000;
+        color: #fff;
+      }
+      #page1 h1 {
+        transform: translateY(-800px);
+        animation: p_a 1s forwards ease-in;
+      }
+      #page1 p {
+        transform: translateX(-2000px);
+        animation: h1_a 1s forwards 1s ease-in;
+      }
+      @keyframes h1_a {
+        to {
+          transform: translateY(0);
+        }
+      }
+      @keyframes p_a {
+        to {
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="page1" class="page">
+      <h1>Page-1</h1>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, fugiat
+        quaerat ea porro architecto vel beatae eius a ipsum aperiam sunt
+        repudiandae modi voluptas quam sit asperiores voluptates, aliquid magni
+        quisquam nisi amet, impedit culpa. Eaque officia neque facilis sed enim,
+        voluptatum omnis ratione, necessitatibus repellat, ipsa in earum
+        officiis!
+      </p>
+      <div>
+        <a href="#page2" class="btn">Next Page</a>
+      </div>
+    </section>
+    <section id="page2" class="page">
+      <h1>Page-2</h1>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, fugiat
+        quaerat ea porro architecto vel beatae eius a ipsum aperiam sunt
+        repudiandae modi voluptas quam sit asperiores voluptates, aliquid magni
+        quisquam nisi amet, impedit culpa. Eaque officia neque facilis sed enim,
+        voluptatum omnis ratione, necessitatibus repellat, ipsa in earum
+        officiis!
+      </p>
+      <div>
+        <a href="#page1" class="btn">Previous Page</a>
+        <a href="#page3" class="btn">Next Page</a>
+      </div>
+    </section>
+    <section id="page3" class="page">
+      <h1>Page-3</h1>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, fugiat
+        quaerat ea porro architecto vel beatae eius a ipsum aperiam sunt
+        repudiandae modi voluptas quam sit asperiores voluptates, aliquid magni
+        quisquam nisi amet, impedit culpa. Eaque officia neque facilis sed enim,
+        voluptatum omnis ratione, necessitatibus repellat, ipsa in earum
+        officiis!
+      </p>
+      <div>
+        <a href="#page2" class="btn">Previous Page</a>
+      </div>
+    </section>
+  </body>
+</html>
