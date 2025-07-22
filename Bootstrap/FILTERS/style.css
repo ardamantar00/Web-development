@@ -1,0 +1,49 @@
+.buttons {
+  width: 200px;
+}
+.filter-box {
+  border-bottom: 1px solid #dee2e6;
+}
+.filter-box .card-header {
+  border-bottom: 0;
+  border-radius: 0;
+}
+.menu {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.menu li > a {
+  color: #51585d;
+  text-decoration: none;
+}
+.scroll {
+  max-height: 200px;
+  overflow: auto;
+}
+.card-header a {
+  text-decoration: none;
+  color: black;
+}
+.fa-chevron-down {
+  float: right;
+  font-size: 22px;
+  color: #51585d;
+  margin-top: 5px;
+}
+.checkbox-btn {
+  position: relative;
+}
+.checkbox-btn input {
+  position: absolute;
+  opacity: 0;
+}
+.checkbox-btn input:checked ~ .btn {
+  color: #fff;
+  background-color: blue;
+}
+.btn-light {
+  background-color: #fff;
+  border-color: #dee2e6;
+  color: black;
+}
