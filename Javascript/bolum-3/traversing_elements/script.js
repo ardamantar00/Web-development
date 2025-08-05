@@ -2,7 +2,7 @@ let sonuc;
 
 const parent = document.querySelector(".parent");
 
-sonuc = parent.childeren;
+sonuc = parent.children;
 sonuc = parent.children[0];
 sonuc = parent.children[0].className;
 sonuc = parent.children[0].nodeName;
