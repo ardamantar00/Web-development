@@ -1,8 +1,17 @@
 function UI() {
-  this.quiz_box = document.querySelector("#quiz-box");
+  this.quiz_Box = document.querySelector("#quiz-box");
+  this.buttonBox = document.querySelector("#button-box");
+  this.scoreBox = document.querySelector("#score-box");
   this.body = document.querySelector("#quiz-box #body");
   this.correctIcon = '<i class="bi bi-check-circle"></i>';
   this.inCorrectIcon = '<i class="bi bi-x-circle"></i>';
+  this.btnNext = document.querySelector(".btn-next");
+  this.btnStart = document.querySelector(".btn-start");
+  this.btnReplay = document.querySelector(".btn-replay");
+  this.btnQuit = document.querySelector(".btn-quit");
+  this.timeText = document.querySelector(".time-text");
+  this.timeSecond = document.querySelector(".time-second");
+  this.timeLine = document.querySelector(".time-line");
 }
 
 UI.prototype.soruGoster = function (soru) {
@@ -38,4 +47,12 @@ UI.prototype.disableAllOption = function () {
   for (let option of options) {
     option.classList.add("disabled");
   }
+};
+UI.prototype.soruSayisiniGoster = function (soruSirasi, toplamSoru) {
+  const etiket = `<span class = "badge text-bg-danger">${soruSirasi} / ${toplamSoru} </span>`;
+  document.querySelector(".question-index").innerHTML = etiket;
+};
+UI.prototype.skoruGoster = function (dogruCevapSayisi, toplamSoru) {
+  const etiket = `Toplam ${toplamSoru} soruda ${dogruCevapSayisi} doğru cevap verdiniz`;
+  document.querySelector(".score-text").innerHTML = etiket;
 };
