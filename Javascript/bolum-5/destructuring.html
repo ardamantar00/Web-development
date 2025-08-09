@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //array destructuring
+      let user = ["arda", "mantar", "Gaziantep", "21000"];
+      //   let [firstName, lastName] = "Arda Mantar".split(" ");
+
+      let [firstName, lastName, ...adres] = user;
+      console.log(firstName, lastName, adres);
+
+      //Object destructuring
+
+      let urun = {
+        marka: "apple",
+        model: "Iphone 14",
+        fiyat: 40000,
+      };
+
+      function urunGoster(obj) {
+        let { marka, model, fiyat = 0, satisDurumu = false } = obj;
+
+        console.log(marka, model, fiyat, satisDurumu);
+      }
+      urunGoster(urun);
+    </script>
+  </body>
+</html>
