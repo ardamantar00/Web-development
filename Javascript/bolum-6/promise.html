@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //login
+      //posts
+      //create post
+      // console.log("start");
+      // const serverStatus = true;
+      // const login = (username, password, successFn, errorFn) => {
+      //   setTimeout(() => {
+      //     if (serverStatus) {
+      //       successFn({ username: username, email: "info@gmail.com" });
+      //     } else {
+      //       errorFn("Server Kapalı");
+      //     }
+      //   }, 1000);
+      // };
+
+      // const getPostByUsername = (username, successFn) => {
+      //   setTimeout(() => {
+      //     successFn(["post 1", "post 2", "post 3"]);
+      //   }, 2000);
+      // };
+      // const getPostDetails = (post, successFn) => {
+      //   setTimeout(() => {
+      //     successFn("post details");
+      //   }, 1000);
+      // };
+
+      // login(
+      //   "arda",
+      //   "1234",
+      //   (user) => {
+      //     console.log(user.name);
+      //     console.log(user.email);
+      //     getPostByUsername(user.username, (posts) => {
+      //       console.log(posts);
+      //       getPostDetails(posts[0], (details) => {
+      //         console.log(details);
+      //       });
+      //     });
+      //   },
+      //   error
+      // );
+      // function error(msg) {
+      //   console.log(msg);
+      // }
+      // console.log("end");
+      const serverStatus = true;
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (serverStatus) {
+            resolve({ username: "Arda Mantar" });
+          } else {
+            reject("login error");
+          }
+        }, 2000);
+      });
+      promise
+        .then((user) => {
+          console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
