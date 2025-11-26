@@ -6,7 +6,7 @@ import SimilarMovies from "./SimilarMovies";
 import MovieList from "../components/MovieList";
 
 const apiUrl = "https://api.themoviedb.org/3";
-const api_key = "3989e3b7ac9a0edf8eb77399418020e5";
+const api_key = import.meta.env.VITE_API_KEY;
 const page = 1;
 const language = "tr-TR";
 const Movies = () => {

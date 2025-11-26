@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 
-const api_key = "3989e3b7ac9a0edf8eb77399418020e5";
+const api_key = import.meta.env.VITE_API_KEY;
 const page = 1;
 const query = "batman";
 const language = "tr-TR";

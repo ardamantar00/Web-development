@@ -7,7 +7,7 @@ import Actors from "../components/Actors";
 import { UserContext } from "../contexts/UserContext";
 
 const apiUrl = "https://api.themoviedb.org/3";
-const api_key = "3989e3b7ac9a0edf8eb77399418020e5";
+const api_key = import.meta.env.VITE_API_KEY;
 const language = "tr-TR";
 
 const MovieDetails = () => {
