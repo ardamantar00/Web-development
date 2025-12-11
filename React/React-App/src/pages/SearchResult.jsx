@@ -17,7 +17,7 @@ const SearchResult = () => {
   const [totalPages, setTotalPages] = useState(0);
   const query = searchParams.get("q");
   const page = searchParams.get("page") || 1;
-  useEffect(() => {
+   useEffect(() => {
     async function getMovies() {
       setLoading(true);
       try {
@@ -42,8 +42,10 @@ const SearchResult = () => {
       setLoading(false);
     }
 
-    getMovies();
-  }, [searchParams]);
+    if (query) {
+      getMovies();
+    }
+  }, [query, page]);
 
   if (loading) {
     return <Loading />;
@@ -54,7 +56,6 @@ const SearchResult = () => {
 
   return (
     <>
-      {" "}
       <MovieList movies={movies} title={`Arama Sonuçları: ${query}`} />
       <Pagination
         page={page}
