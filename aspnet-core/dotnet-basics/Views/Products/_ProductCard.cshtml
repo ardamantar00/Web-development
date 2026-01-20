@@ -1,0 +1,13 @@
+@model Product
+<div class="card h-100 mb-3 shadow">
+    <img src="~/img/@Model.Image" class="card-img-top">
+    <div class="card-body bg-light">
+        <h5 class="card-title">@Model.ProductTitle</h5>
+        <p class="card-text">@Model.ProductDescription</p>
+        @if (!Model.IsProductOnSale)
+        {
+            <p class="card-text">Satışta değil</p>
+        }
+        <a asp-controller="Products" asp-action="Details" asp-route-id=@Model.Id class="btn btn-primary btn-sm d-flex justify-content-center">Detay</a>
+    </div>
+</div>

@@ -1,1 +1,15 @@
-<h1>Course/List</h1>
+@* @model Course[] *@
+@model List<Course>
+<h1 class="h3 mb-3">Tüm Kurslar</h1>
+<div class="row">
+    @foreach(Course course in Model){
+        @if(course.IsActive)
+        {
+            <div class="col-md-3">
+                @await Html.PartialAsync("_CourseCard",course)
+            </div>
+        }
+         
+    }
+      
+</div>

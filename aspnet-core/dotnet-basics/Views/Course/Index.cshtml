@@ -1,7 +1,19 @@
-<h1 class="mb-3">Kurslar</h1>
-<div class="row kurslar">
-    @await Html.PartialAsync("_CourseCard")
-    @await Html.PartialAsync("_CourseCard")
-    @await Html.PartialAsync("_CourseCard")
-    @await Html.PartialAsync("_CourseCard")
+@model List<Course>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-3">Kurslar</h1>
+    <a class="btn btn-outline-danger" asp-action="List" asp-controller="Course">Tüm kurslar</a>
+</div>
+<div class="row">
+   @foreach(Course course in Model)
+{
+    @if(course.IsHome)
+    {
+        <div class="col-md-3">
+             @await Html.PartialAsync("_CourseCard",course)
+        </div>
+       
+    }
+ 
+}
 </div>

@@ -1,1 +1,15 @@
-<h1>Products/List</h1>
+@model List<Product>
+<h1>Ürün Listesi</h1>
+<div class="row">
+    @foreach (Product product in Model)
+    {
+        @if (product.IsProductOnSale && product.StockCount > 0)
+        {
+            <div class="col-md-3">
+                @await Html.PartialAsync("_ProductCard", product)
+            </div>
+        }
+    }
+
+</div>
+</div>

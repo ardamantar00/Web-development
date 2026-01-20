@@ -1,1 +1,28 @@
+@model Product
 <h1>Products/Details</h1>
+<div class="row border">
+    <div class="col-4">
+        <img src="~/img/@Model.Image" alt="">
+    </div>
+    <div class="col-8 border-start p-3">
+        <h1 class="fw-bold">@Model.ProductTitle</h1>
+        <p>
+            @Model.ProductDescription
+        </p>
+        <p>
+            @Model.ProductPrice
+        </p>
+        @if(Model.IsProductOnSale)
+        {
+            @if(Model.StockCount > 0)
+            {
+               <p>
+                Stokta var
+                </p> 
+            }else{
+                <p>Stok sayısı yeterli değil</p>
+            }
+        }else{
+            <p>Satışa değil</p>
+        }
+</div>
