@@ -1,16 +1,28 @@
 # macOS sistem dosyaları
 .DS_Store
 
+# Windows sistem dosyaları
+Thumbs.db
+
 # VS Code ayarları
 .vscode/
 
+# Visual Studio
+.vs/
+*.user
+
+# .NET build çıktıları
+bin/
+obj/
+
+# Veritabanı dosyaları
+*.db
+*.db-wal
+*.db-shm
 
 # Log dosyaları
 *.log
 
-# Derleme ve geçici dosyalar
+# Frontend build / geçici dosyalar
 dist/
 build/
-
-# Sistem dosyaları
-Thumbs.db
