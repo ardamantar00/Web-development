@@ -11,9 +11,20 @@ public class ProductController : Controller
     {
         _context = context;
     }
-    public ActionResult Index()
+    public ActionResult List()
     {
-        var products = _context.Products.ToList();
+        var products = _context.Products.Where(i=> i.IsActive).ToList();
         return View(products);
+    }
+     public ActionResult Index()
+    {
+       
+        return View();
+    }
+    public ActionResult Details(int id)
+    {
+        var product = _context.Products.FirstOrDefault(x=>x.Id == id);
+        // var product = _context.Products.Find(id);
+        return View(product);
     }
 }

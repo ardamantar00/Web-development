@@ -129,10 +129,10 @@ C:\Users\Arda\dotnet-store\obj\Debug\net10.0\refint\dotnet-store.dll
 C:\Users\Arda\dotnet-store\obj\Debug\net10.0\dotnet-store.pdb
 C:\Users\Arda\dotnet-store\obj\Debug\net10.0\dotnet-store.genruntimeconfig.cache
 C:\Users\Arda\dotnet-store\obj\Debug\net10.0\ref\dotnet-store.dll
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\appsettings.json
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\dotnet-store.staticwebassets.endpoints.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\appsettings.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\dotnet-store.staticwebassets.runtime.json
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\dotnet-store.staticwebassets.endpoints.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\dotnet-store.exe
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\dotnet-store.deps.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\bin\Debug\net10.0\dotnet-store.runtimeconfig.json
@@ -266,10 +266,11 @@ C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\scopedcss\bundle\dotnet-store.styles.css
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\scopedcss\projectbundle\dotnet-store.bundle.scp.css
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\lc716ummtx-{0}-b9sayid5wm-b9sayid5wm.gz
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\701cw6aq5m-{0}-tpznpjr8xw-tpznpjr8xw.gz
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\x1jtzzcwzc-{0}-vwipl5cvsg-vwipl5cvsg.gz
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\1o1crdvqqc-{0}-wqhl0zxvjx-wqhl0zxvjx.gz
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\svnfcdsgag-{0}-l6j59c68gs-l6j59c68gs.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\6eb5048nii-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\k3lcgu642w-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\vwgvz5hv63-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -331,8 +332,6 @@ C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\13cy0vmo2c-{0}-muycvpuwrr-muycvpuwrr.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\og89qmz54c-{0}-87fc7y1x7t-87fc7y1x7t.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\b36zrc737k-{0}-mlv21k5csn-mlv21k5csn.gz
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\86vk44odcd-{0}-oo1hzig50x-oo1hzig50x.gz
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\48a2qux14p-{0}-oo1hzig50x-oo1hzig50x.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\staticwebassets.development.json
@@ -344,3 +343,4 @@ C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\dotnet-store.pdb
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\dotnet-store.genruntimeconfig.cache
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\ref\dotnet-store.dll
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\w3sjv5b19z-{0}-yw8vngsln8-yw8vngsln8.gz

@@ -22,7 +22,16 @@ namespace dotnet_store.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsHome")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Price")
@@ -40,44 +49,82 @@ namespace dotnet_store.Migrations
                         new
                         {
                             Id = 1,
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "1.jpeg",
                             IsActive = true,
+                            IsHome = true,
                             Price = 40000.0,
                             ProductName = "Apple Watch 7"
                         },
                         new
                         {
                             Id = 2,
-                            IsActive = false,
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "2.jpeg",
+                            IsActive = true,
+                            IsHome = false,
                             Price = 50000.0,
                             ProductName = "Apple Watch 8"
                         },
                         new
                         {
                             Id = 3,
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "3.jpeg",
                             IsActive = false,
+                            IsHome = true,
                             Price = 60000.0,
                             ProductName = "Apple Watch 9"
                         },
                         new
                         {
                             Id = 4,
-                            IsActive = true,
-                            Price = 45000.0,
-                            ProductName = "Apple Watch 10"
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "4.jpeg",
+                            IsActive = false,
+                            IsHome = true,
+                            Price = 70000.0,
+                            ProductName = "sApple Watch 10"
                         },
                         new
                         {
                             Id = 5,
-                            IsActive = false,
-                            Price = 50000.0,
-                            ProductName = "Apple Watch 11"
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "5.jpeg",
+                            IsActive = true,
+                            IsHome = false,
+                            Price = 80000.0,
+                            ProductName = "Apsple Watch 11"
                         },
                         new
                         {
                             Id = 6,
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "6.jpeg",
                             IsActive = true,
-                            Price = 55000.0,
+                            IsHome = true,
+                            Price = 85000.0,
                             ProductName = "Apple Watch 12"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "7.jpeg",
+                            IsActive = true,
+                            IsHome = false,
+                            Price = 90000.0,
+                            ProductName = "Apple Watch 13"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
+                            Image = "8.jpeg",
+                            IsActive = false,
+                            IsHome = true,
+                            Price = 95000.0,
+                            ProductName = "Apple Watch 14"
                         });
                 });
 #pragma warning restore 612, 618
