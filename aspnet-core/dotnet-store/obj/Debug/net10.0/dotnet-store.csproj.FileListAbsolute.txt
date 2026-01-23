@@ -272,7 +272,6 @@ C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\1o1crdvqqc-{0}-wqhl0zxvjx-wqhl0zxvjx.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\svnfcdsgag-{0}-l6j59c68gs-l6j59c68gs.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\6eb5048nii-{0}-61n19gt1b8-61n19gt1b8.gz
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\k3lcgu642w-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\vwgvz5hv63-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\aougu4zxpd-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\1ir2hn19r5-{0}-erw9l3u2r3-erw9l3u2r3.gz

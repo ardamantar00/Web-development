@@ -8,4 +8,6 @@ namespace dotnet_store.Models;
      public string? Description { get; set; }
      public bool IsActive { get; set; }
      public bool IsHome { get; set; }
+     public int CategoryId { get; set; }
+     public Category category { get; set; } = null!;
 }

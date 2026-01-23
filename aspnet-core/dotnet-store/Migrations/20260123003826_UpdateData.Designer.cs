@@ -10,8 +10,8 @@ using dotnet_store.Models;
 namespace dotnet_store.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260122230303_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260123003826_UpdateData")]
+    partial class UpdateData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,10 +19,94 @@ namespace dotnet_store.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.2");
 
+            modelBuilder.Entity("dotnet_store.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Telefon",
+                            Url = "telefon"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "Beyaz Eşya",
+                            Url = "beyaz-esya"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Giyim",
+                            Url = "giyim"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryName = "Kozmetik",
+                            Url = "kozmetik"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryName = "Elektronik",
+                            Url = "elektronik"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryName = "Telefon",
+                            Url = "telefon"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryName = "Beyaz Eşya",
+                            Url = "beyaz-esya"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryName = "Giyim",
+                            Url = "giyim"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryName = "Kozmetik",
+                            Url = "kozmetik"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryName = "Elektronik",
+                            Url = "elektronik"
+                        });
+                });
+
             modelBuilder.Entity("dotnet_store.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -46,12 +130,15 @@ namespace dotnet_store.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
                             Image = "1.jpeg",
                             IsActive = true,
@@ -62,8 +149,9 @@ namespace dotnet_store.Migrations
                         new
                         {
                             Id = 2,
+                            CategoryId = 2,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "2.jpeg",
                             IsActive = true,
                             IsHome = false,
                             Price = 50000.0,
@@ -72,8 +160,9 @@ namespace dotnet_store.Migrations
                         new
                         {
                             Id = 3,
+                            CategoryId = 2,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "3.jpeg",
                             IsActive = false,
                             IsHome = true,
                             Price = 60000.0,
@@ -82,28 +171,31 @@ namespace dotnet_store.Migrations
                         new
                         {
                             Id = 4,
+                            CategoryId = 3,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "4.jpeg",
                             IsActive = false,
                             IsHome = true,
                             Price = 70000.0,
-                            ProductName = "Apple Watch 10"
+                            ProductName = "sApple Watch 10"
                         },
                         new
                         {
                             Id = 5,
+                            CategoryId = 4,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "5.jpeg",
                             IsActive = true,
                             IsHome = false,
                             Price = 80000.0,
-                            ProductName = "Apple Watch 11"
+                            ProductName = "Apsple Watch 11"
                         },
                         new
                         {
                             Id = 6,
+                            CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "6.jpeg",
                             IsActive = true,
                             IsHome = true,
                             Price = 85000.0,
@@ -112,8 +204,9 @@ namespace dotnet_store.Migrations
                         new
                         {
                             Id = 7,
+                            CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "7.jpeg",
                             IsActive = true,
                             IsHome = false,
                             Price = 90000.0,
@@ -122,13 +215,30 @@ namespace dotnet_store.Migrations
                         new
                         {
                             Id = 8,
+                            CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius explicabo voluptatibus aperiam voluptate dignissimos expedita aspernatur similique vero exercitationem dicta, tempore repudiandae alias? Expedita, debitis ratione voluptates in fugiat exercitationem?",
-                            Image = "1.jpeg",
+                            Image = "8.jpeg",
                             IsActive = false,
                             IsHome = true,
                             Price = 95000.0,
                             ProductName = "Apple Watch 14"
                         });
+                });
+
+            modelBuilder.Entity("dotnet_store.Models.Product", b =>
+                {
+                    b.HasOne("dotnet_store.Models.Category", "category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
+                });
+
+            modelBuilder.Entity("dotnet_store.Models.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
