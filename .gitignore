@@ -1,28 +1,66 @@
-# macOS sistem dosyaları
+# ==========================
+# macOS ve Windows sistem dosyaları
+# ==========================
 .DS_Store
-
-# Windows sistem dosyaları
 Thumbs.db
 
-# VS Code ayarları
+# ==========================
+# IDE / Editor
+# ==========================
+# VS Code
 .vscode/
+*.code-workspace
 
 # Visual Studio
 .vs/
 *.user
+*.suo
+*.vscode
 
-# .NET build çıktıları
+# Rider
+.idea/
+
+# ==========================
+# .NET / ASP.NET build çıktıları
+# ==========================
 bin/
 obj/
+publish/
+*.dll
+*.exe
+*.pdb
 
+# ==========================
 # Veritabanı dosyaları
+# ==========================
 *.db
 *.db-wal
 *.db-shm
 
+# ==========================
 # Log dosyaları
+# ==========================
 *.log
 
-# Frontend build / geçici dosyalar
+# ==========================
+# Frontend build ve geçici dosyalar
+# ==========================
 dist/
 build/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================
+# Secret config / Environment
+# ==========================
+appsettings.Development.json
+.env
+
+# ==========================
+# Geçici dosyalar / cache
+# ==========================
+*.tmp
+*.bak
+*.swp
