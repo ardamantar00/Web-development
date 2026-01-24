@@ -13,7 +13,8 @@
     color: #212529;
 }
 
-.bg-primary, .btn-primary {
+.bg-primary,
+.btn-primary {
     background-color: var(--primary) !important;
 }
 
@@ -62,6 +63,7 @@
     color: #51585e;
 }
 
+
 /* .price-wrap .price-discount {
     font-size: 1.2em;
 } */
@@ -91,7 +93,13 @@
     color: #fff;
 }
 
+
 /* gallery */
+
+.gallery-wrap {
+    overflow: hidden;
+}
+
 .gallery-wrap .img-big-wrap {
     width: 100%;
     height: 400px;
@@ -101,13 +109,16 @@
 
 .gallery-wrap .img-big-wrap img {
     max-width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .gallery-wrap .thumbs-wrap {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
 }
-
-
 
 .gallery-wrap .thumbs-wrap a {
     width: 60px;

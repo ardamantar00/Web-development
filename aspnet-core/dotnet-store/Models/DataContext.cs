@@ -8,11 +8,22 @@ public class DataContext : DbContext
     {
 
     }
+    public DbSet<Slider> Sliders { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Slider>().HasData(
+            new List<Slider>()
+            {
+                new Slider { Id = 1,Title = "Slider 1 Başlık",Description = "Slider 1 Açıklama",Image = "slider-1.jpeg",Index = 0,IsActive = true},
+                new Slider { Id = 2,Title = "Slider 1 Başlık",Description = "Slider 2 Açıklama",Image = "slider-2.jpeg",Index = 1,IsActive = false},
+                new Slider { Id = 3,Title = "Slider 1 Başlık",Description = "Slider 3 Açıklama",Image = "slider-3.jpeg",Index = 2,IsActive = true},
+
+                
+            }
+        );
         modelBuilder.Entity<Category>().HasData(
             new List<Category>()
             {

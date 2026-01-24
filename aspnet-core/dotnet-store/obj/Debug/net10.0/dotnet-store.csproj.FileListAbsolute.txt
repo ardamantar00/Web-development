@@ -267,7 +267,6 @@ C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\scopedcss\bundle\dotnet-store.styles.css
-C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\701cw6aq5m-{0}-tpznpjr8xw-tpznpjr8xw.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\x1jtzzcwzc-{0}-vwipl5cvsg-vwipl5cvsg.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\1o1crdvqqc-{0}-wqhl0zxvjx-wqhl0zxvjx.gz
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\svnfcdsgag-{0}-l6j59c68gs-l6j59c68gs.gz
@@ -343,3 +342,4 @@ C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\dotnet-store.genruntimeconfig.cache
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\ref\dotnet-store.dll
 C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\w3sjv5b19z-{0}-yw8vngsln8-yw8vngsln8.gz
+C:\Users\Arda\Desktop\Web-development\aspnet-core\dotnet-store\obj\Debug\net10.0\compressed\701cw6aq5m-{0}-mel4iend30-mel4iend30.gz
