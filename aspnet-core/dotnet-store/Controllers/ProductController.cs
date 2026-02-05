@@ -11,10 +11,21 @@ public class ProductController : Controller
     {
         _context = context;
     }
-    public ActionResult List(string url)
+    public ActionResult List(string url, string q)
     {
-        var products = _context.Products.Where(i => i.IsActive && i.category.Url == url).ToList();
-        return View(products);
+        IQueryable<Product> query = _context.Products;
+
+        if (!string.IsNullOrWhiteSpace(url))
+        {
+            query = query.Where(i=>i.category!= null && i.category.Url == url);
+        }
+
+        if (!string.IsNullOrWhiteSpace(q))
+        {
+            query = query.Where(i=>i.ProductName.ToLower().Contains(q.ToLower()));
+        }
+        ViewData["q"] = q;
+        return View(query.ToList());
     }
     public ActionResult Index()
     {
