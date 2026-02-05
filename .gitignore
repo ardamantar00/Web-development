@@ -64,3 +64,32 @@ appsettings.Development.json
 *.tmp
 *.bak
 *.swp
+# ==========================
+# .NET ek cache / geçici dosyalar (SONRADAN EKLENENLER)
+# ==========================
+*.cache
+*.temp
+*.orig
+
+# NuGet
+.nuget/
+packages/
+*.nupkg
+*.snupkg
+
+# Test / coverage
+TestResults/
+coverage/
+coverage.cobertura.xml
+
+# MSBuild / Roslyn
+*.FileListAbsolute.txt
+*.AssemblyReference.cache
+*.ResolveAssemblyReference.cache
+
+# ReSharper / Rider
+_ReSharper*/
+*.DotSettings.user
+
+# Benchmark
+BenchmarkDotNet.Artifacts/
