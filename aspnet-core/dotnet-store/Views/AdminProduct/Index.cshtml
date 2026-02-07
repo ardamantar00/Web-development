@@ -1,4 +1,4 @@
-@model List<ProductGetModel>
+@model List<Product>
 @{
     Layout = "_AdminLayout";
 }
@@ -7,7 +7,7 @@
     <div class="card shadow">
       <div class="card-header py-1 d-flex justify-content-between align-items-center">
         <h5 class="card-title">Ürünler</h5>
-        <a asp-controller="Product" asp-action="Create" class="btn btn-sm btn-primary">
+        <a href="urun-ekle.html" class="btn btn-sm btn-primary">
           <i class="fa-solid fa-plus"></i>
         </a>
       </div>
@@ -27,44 +27,31 @@
               </tr>
             </thead>
             <tbody>
-              @foreach(ProductGetModel product in Model)
+              @foreach(Product product in Model)
               {
                 <tr>
                 <td>@product.Id</td>
                 <td>
-                  <img src = "~/img/@product.Image"  alt="@product.ProductName" class="img-fluid" />
+                  <img src = "~/img/@product.Image"  alt="~/img/@product.Image" class="img-fluid" />
                 </td>
                 <td>@product.ProductName</td>
                 <td>@product.Price ₺</td>
                 <td>
-                    @if(product.IsActive) 
-                    {
-                        <i class="fa-solid fa-circle-check text-success"></i>
-                    }
-                    else 
-                    {
-                        <i class="fa-regular fa-circle-xmark text-danger"></i>
-                    } 
+                  <i class="fa-solid fa-circle-check text-success"></i>
                 </td>
                 <td>
-                    @if(product.IsHome) 
-                    {
-                        <i class="fa-solid fa-circle-check text-success"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-regular fa-circle-xmark text-danger"></i>
-                    }
-
+                  <i class="fa-regular fa-circle-xmark text-danger"></i>
                 </td>
-                <td>@(product.CategoryName ?? "-")</td>
+                <td>@product.category</td>
                 <td>
-                  <a asp-controller="Product" asp-action = "Edit" asp-route-id = "@product.Id" class="btn btn-primary btn-sm">
+                  <a href="kategori-ekle.html" class="btn btn-primary btn-sm">
                     <i class="fa-solid fa-pen-to-square"></i>
                   </a>
                 </td>
               </tr>
               }
+              
+             
             </tbody>
           </table>
         </div>

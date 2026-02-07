@@ -25,7 +25,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
+// app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.MapControllerRoute(
     name : "product_by_category",
