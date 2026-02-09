@@ -1,6 +1,6 @@
 namespace dotnet_store.Models;
 
-public class CategoryGetModel
+public class CategoryGetModel 
 {
     public int Id { get; set; }
     public string CategoryName { get; set; }  = null!;

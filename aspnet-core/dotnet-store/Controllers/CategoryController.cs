@@ -42,7 +42,7 @@ public class CategoryController : Controller
         _context.SaveChanges();
         return RedirectToAction("Index");
         }
-        return View();
+        return View(model);
         
     }
 
