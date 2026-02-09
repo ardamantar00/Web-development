@@ -1,5 +1,9 @@
+@model SliderCreateModel
 @{
     Layout = "_AdminLayout";
+}
+@section Scripts {
+  @await Html.PartialAsync("_ValidationScriptsPartial.cshtml")
 }
 <div class="row">
           <div class="col">
@@ -13,29 +17,21 @@
                 </a>
               </div>
               <div class="card-body">
-                <form>
+                <form method="post" enctype="multipart/form-data">
+                  
                   <div class="row mb-3">
-                    <label for="sliderResmi" class="col-sm-2 col-form-label">
-                      Mevcut Resim
-                    </label>
-                    <div class="col-sm-10">
-                      <img src="img/slider-1.jpeg" alt="" class="img-fluid" />
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <label for="sliderBaslik" class="col-sm-2 col-form-label">
+                    <label asp-for = "Title" class="col-sm-2 col-form-label">
                       Başlık
                     </label>
                     <div class="col-sm-10">
                       <input
-                        type="text"
-                        id="sliderBaslik"
+                        asp-for = "Title"
                         class="form-control"
                       />
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <label for="sliderAciklama" class="col-sm-2 col-form-label">
+                    <label asp-for="Description" class="col-sm-2 col-form-label">
                       Açıklama
                     </label>
                     <div class="col-sm-10">
@@ -48,47 +44,32 @@
                   </div>
 
                   <div class="row mb-3">
-                    <label for="urunAktif" class="col-sm-2 col-form-label">
-                      Aktif
+                    <label asp-for = "IsActive" class="col-sm-2 col-form-label">
+                      
                     </label>
                     <div class="col-sm-10">
                       <input
-                        type="checkbox"
-                        id="urunAktif"
+                        asp-for="IsActive"
                         class="form-check-input"
                       />
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <label for="Resim" class="col-sm-2 col-form-label">
-                      Resim
+                    <label asp-for="Image" class="col-sm-2 col-form-label">
+                      
                     </label>
                     <div class="col-sm-10">
-                      <input type="file" id="Resim" class="form-control" />
+                      <input asp-for="Image" class="form-control" />
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <label for="Index" class="col-sm-2 col-form-label">
-                      Index
+                    <label asp-for="Index" class="col-sm-2 col-form-label">
+                      
                     </label>
                     <div class="col-sm-10">
-                      <input type="number" id="Index" class="form-control" />
+                      <input asp-for="Index" class="form-control" />
                     </div>
                   </div>
-                  <div class="row mb-3">
-                    <label for="urunKategori" class="col-sm-2 col-form-label">
-                      Kategori
-                    </label>
-                    <div class="col-sm-10">
-                      <select class="form-select">
-                        <option value="" selected>Seçiniz</option>
-                        <option value="1">Telefon</option>
-                        <option value="2">Beyaz Eşya</option>
-                        <option value="3">Televizyon</option>
-                      </select>
-                    </div>
-                  </div>
-
                   <div class="row mb-3">
                     <div class="col-sm-10 offset-sm-2">
                       <button type="submit" class="btn btn-primary">
