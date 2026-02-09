@@ -1,14 +1,10 @@
-<<<<<<< HEAD
 using dotnet_store.Models;
-=======
->>>>>>> feature/slider
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_store.Controllers;
 
 public class SliderController: Controller
 {
-<<<<<<< HEAD
     private readonly DataContext _context;
     public SliderController(DataContext context)
     {
@@ -21,18 +17,10 @@ public class SliderController: Controller
     }
     public ActionResult Create()
     {
-
         return View();
     }
     [HttpPost]  
     public ActionResult Create(SliderCreateModel model)
-=======
-    public ActionResult Index()
-    {
-        return View();
-    }
-    public ActionResult Create()
->>>>>>> feature/slider
     {
         return View();
     }
@@ -45,7 +33,6 @@ public class SliderController: Controller
     {
         return View();
     }
-<<<<<<< HEAD
 
     [HttpPost]
     public ActionResult Delete(int? id)
@@ -54,10 +41,8 @@ public class SliderController: Controller
     }
 
     [HttpPost]
-     public ActionResult DeleteConfirm(int? id)
+    public ActionResult DeleteConfirm(int? id)
     {
         return View();
     }
-=======
->>>>>>> feature/slider
 }
