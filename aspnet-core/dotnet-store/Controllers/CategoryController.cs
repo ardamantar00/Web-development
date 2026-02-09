@@ -29,10 +29,11 @@ public class CategoryController : Controller
         return View();
     }
     [HttpPost]
-    public ActionResult Create(CategoryCreateModel model)
-
+    public ActionResult Create(CategoryCreateModel model)         
     {
-        var entity = new Category
+        if (ModelState.IsValid)
+        {
+            var entity = new Category
         {
             CategoryName = model.CategoryName,
             Url = model.Url
@@ -40,6 +41,9 @@ public class CategoryController : Controller
         _context.Categories.Add(entity);
         _context.SaveChanges();
         return RedirectToAction("Index");
+        }
+        return View();
+        
     }
 
     public ActionResult Edit(int id)
@@ -60,16 +64,18 @@ public class CategoryController : Controller
         {
             return RedirectToAction("Index");
         }
-        var entity = _context.Categories.FirstOrDefault(i=>i.Id == model.Id);
-
-        if (entity != null)
+        if(ModelState.IsValid)
         {
-            entity.CategoryName = model.CategoryName;
-            entity.Url = model.Url;
-            _context.SaveChanges();
-            TempData["Message"] = $"{entity.CategoryName} kategorisi güncellendi";
+            var entity = _context.Categories.FirstOrDefault(i=>i.Id == model.Id);
+            if (entity != null)
+            {
+                entity.CategoryName = model.CategoryName;
+                entity.Url = model.Url;
+                _context.SaveChanges();
+                TempData["Message"] = $"{entity.CategoryName} kategorisi güncellendi";
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
         }
         return View(model);
     }

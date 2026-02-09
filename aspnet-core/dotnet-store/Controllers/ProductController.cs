@@ -67,6 +67,13 @@ public class ProductController : Controller
     [HttpPost]
     public async Task<ActionResult> Create(ProductCreateModel model)  
     {
+
+        if (model.Image == null || model.Image.Length == 0)
+        {
+            ModelState.AddModelError("Image","Resim Seçmelisiniz");
+        }
+        if(ModelState.IsValid)
+        {
         var fileName = Path.GetRandomFileName() + ".jpeg";
         var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img",fileName);
         using (var stream = new FileStream(path,FileMode.Create))
@@ -76,17 +83,21 @@ public class ProductController : Controller
         var entity = new Product
         {
             ProductName = model.ProductName,
-            Price = model.Price,
+            Price = model.Price ?? 0,
             Description = model.Description,
             IsActive = model.IsActive,
             IsHome = model.IsHome,
-            CategoryId = model.CategoryId,
+            CategoryId = (int)model.CategoryId!,
             Image = fileName
             
         };
         _context.Products.Add(entity);
         _context.SaveChanges();
         return RedirectToAction("Index");
+        }
+        ViewBag.Categories = _context.Categories.ToList();
+        return View(model);
+        
     }
     
     public ActionResult Edit(int id)
@@ -112,36 +123,43 @@ public class ProductController : Controller
     [HttpPost]
     public async Task<ActionResult> Edit(int id, ProductEditModel model)
     {
+
         if(id != model.Id)
         {
             return RedirectToAction("Index");
         }
+        
+
+        if(ModelState.IsValid)
+        {
         var entity = _context.Products.FirstOrDefault(i=>i.Id == model.Id);
         ViewBag.Categories = _context.Categories.ToList();
 
         if(entity != null)
         {
-            if(model.ImageFile != null)
+            if(model.Image != null)
             {
                 var fileName = Path.GetRandomFileName() + ".jpeg";
-        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img",fileName);
-        using (var stream = new FileStream(path,FileMode.Create))
-        {
-            await model.ImageFile.CopyToAsync(stream);
-        }
-        entity.Image = fileName;
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img",fileName);
+            using (var stream = new FileStream(path,FileMode.Create))
+            {
+                await model.Image.CopyToAsync(stream);
+            }
+            entity.Image = fileName;
             }
             entity.ProductName = model.ProductName;
             entity.Description = model.Description;
-            entity.Price = model.Price;
+            entity.Price = model.Price ?? 0;
             entity.IsActive = model.IsActive;
             entity.IsHome = model.IsHome;
-            entity.CategoryId = model.CategoryId;
+            entity.CategoryId = (int)model.CategoryId!;
 
             _context.SaveChanges();
             TempData["Message"] = $"{entity.ProductName} güncellendi";
             return RedirectToAction("Index");
         }
+        }
+        ViewBag.Categories = _context.Categories.ToList();
         return View(model);
     }
 }
