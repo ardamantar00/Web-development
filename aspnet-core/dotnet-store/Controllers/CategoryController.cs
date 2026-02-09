@@ -79,4 +79,37 @@ public class CategoryController : Controller
         }
         return View(model);
     }
+
+    public ActionResult Delete(int? id)
+    {
+        if(id == null)
+        {
+            return RedirectToAction("Index");
+        }
+        var entity = _context.Categories.FirstOrDefault(i=>i.Id == id);
+
+        if(entity != null)
+        {
+           return View(entity);
+        }
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteConfirm(int? id)
+    {
+         if(id == null)
+        {
+            return RedirectToAction("Index");
+        }
+        var entity = _context.Categories.FirstOrDefault(i=>i.Id == id);
+
+        if(entity != null)
+        {
+            _context.Categories.Remove(entity);
+            _context.SaveChanges();
+            TempData["Mesaj"] = $"{entity.CategoryName} kategorisi silindi";
+        }
+        return RedirectToAction("Index");
+    }
 }

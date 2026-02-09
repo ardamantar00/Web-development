@@ -12,7 +12,23 @@
         </a>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+
+        <form method="get">
+          <div class="input-group mb-2">
+            <select name = "category" class="form-select" asp-items="ViewBag.Categories">
+              <option value="" selected>Hepsi</option>
+            </select>
+            <button class="btn btn-secondary" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+        @if(Model.Count == 0)
+        {
+          <p class="text-danger">Ürün bulunamadı</p>
+        }
+        else{
+            <div class="table-responsive">
           <table class="table table-bordered table-striped mb-0 table-hover">
             <thead class="table-secondary">
               <tr>
@@ -62,12 +78,17 @@
                   <a asp-controller="Product" asp-action = "Edit" asp-route-id = "@product.Id" class="btn btn-primary btn-sm">
                     <i class="fa-solid fa-pen-to-square"></i>
                   </a>
+                  <a asp-controller="Product" asp-action = "Delete" asp-route-id = "@product.Id" class="btn btn-danger btn-sm">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
                 </td>
               </tr>
               }
             </tbody>
           </table>
         </div>
+        }
+        
       </div>
     </div>
   </div>

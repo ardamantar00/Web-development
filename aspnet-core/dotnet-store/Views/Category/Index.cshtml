@@ -35,14 +35,19 @@
                           <a asp-controller="Category" asp-action = "Edit"  asp-route-id = "@category.Id" class="btn btn-primary btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i>
                           </a>
-                          <a href="urun.html" class="btn btn-primary btn-sm">
+                          <a asp-controller="Product"asp-route-category ="@category.Id" class="btn btn-primary btn-sm">
                             <i class="fa-solid fa-right-long"></i>
                           </a>
+                          @if(category.ProductCount == 0)
+                          {
+                              <a asp-controller="Category" asp-action = "Delete"  asp-route-id = "@category.Id" class="btn btn-danger btn-sm">
+                                  <i class="fa-solid fa-trash"></i>
+                              </a>
+                          }
+                          
                         </td>
                       </tr>
                       }
-                      
-                    
                     </tbody>
                   </table>
                 </div>

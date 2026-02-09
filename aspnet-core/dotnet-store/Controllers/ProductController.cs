@@ -1,5 +1,6 @@
 using dotnet_store.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dotnet_store.Controllers;
@@ -28,9 +29,15 @@ public class ProductController : Controller
         ViewData["q"] = q;
         return View(query.ToList());
     }
-    public ActionResult Index()
+    public ActionResult Index(int? category)
     {
-        var products = _context.Products.Select(i=> new ProductGetModel
+        IQueryable<Product> query = _context.Products;
+
+        if(category != null)
+        {
+            query = query.Where(i => i.CategoryId == category);
+        }
+        var products = query.Select(i=> new ProductGetModel
         {
             Id = i.Id,
             ProductName = i.ProductName,
@@ -40,6 +47,7 @@ public class ProductController : Controller
             CategoryName = i.category.CategoryName,
             Image = i.Image
         }).ToList();
+        ViewBag.Categories = new SelectList(_context.Categories.ToList(),"Id","CategoryName",category);
         return View(products);
     }
     public ActionResult Details(int id)
@@ -161,5 +169,36 @@ public class ProductController : Controller
         }
         ViewBag.Categories = _context.Categories.ToList();
         return View(model);
+    }
+    public ActionResult Delete(int? id)
+    {
+        if(id == null)
+        {
+            return RedirectToAction("Index");
+        }
+        var entity = _context.Products.FirstOrDefault(i=>i.Id == id);
+
+        if(entity != null)
+        {
+            return View(entity);
+        }
+        return RedirectToAction("Index");
+    }
+    [HttpPost]
+    public ActionResult DeleteConfirm(int? id)
+    {
+         if(id == null)
+        {
+            return RedirectToAction("Index");
+        }
+        var entity = _context.Products.FirstOrDefault(i=>i.Id == id);
+
+        if(entity != null)
+        {
+            _context.Products.Remove(entity);
+            _context.SaveChanges();
+             TempData["Mesaj"] = $"{entity.ProductName} ürünü silindi";
+        }
+        return RedirectToAction("Index");
     }
 }
