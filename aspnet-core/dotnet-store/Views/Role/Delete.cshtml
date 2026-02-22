@@ -1,0 +1,40 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model AppRole
+@{
+    Layout = "_AdminLayout";
+}
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="col text-center">
+                <p>
+                    @Model.Name isimli rolü silmek istiyor musunuz ?
+                </p>
+
+
+                <form asp-action="DeleteConfirm">
+                    <input type="hidden" name="id" value="@Model.Id">
+
+                    @if (ViewBag.Users.Count > 0)
+                    {
+
+                        @foreach (var item in ViewBag.Users)
+                        {
+                            <p>
+                                @item
+                            </p>
+                        }
+
+                    }
+                    else 
+                    {
+                         <button type="submit" class="btn btn-danger">Sil</button>
+                    }
+
+                    <a asp-action="Index" class="btn btn-primary">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
