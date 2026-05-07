@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_store.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     public ActionResult Index()

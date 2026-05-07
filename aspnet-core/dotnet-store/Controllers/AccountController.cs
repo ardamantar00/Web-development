@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using dotnet_store.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +11,12 @@ public class AccountController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+    private IEmailService _emailService;
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,IEmailService emailService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _emailService = emailService;
     }
     public ActionResult Create()
     {
@@ -46,6 +49,7 @@ public class AccountController : Controller
     }
     [HttpPost]
     public async Task<ActionResult> Login(AccountLoginModel model,string? returnUrl)
+
     {
 
         if (ModelState.IsValid)
@@ -69,7 +73,7 @@ public class AccountController : Controller
                     {
                         return RedirectToAction("Index","Home");
                     }
-                    return RedirectToAction("Index", "Home");
+                    // return RedirectToAction("Index", "Home");
                 }
                 else if (result.IsLockedOut)
                 {
@@ -90,6 +94,7 @@ public class AccountController : Controller
         }
         return View(model);
     }
+   [Authorize]
     public async Task<ActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
@@ -99,5 +104,172 @@ public class AccountController : Controller
     public ActionResult Settings()
     {
         return View();
+    }
+
+    public ActionResult AccessDenied()
+    {
+        return View();
+    }
+    public ActionResult ChangePassword()
+    {
+        return View();
+    }
+    [Authorize]
+    [HttpPost]
+    public async Task<ActionResult> ChangePassword(AccountChangePasswordModel model)
+    {
+        if (ModelState.IsValid)
+        {
+             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId!);
+
+            if (user != null)
+            {
+                var result  = await _userManager.ChangePasswordAsync(user,model.OldPassword,model.Password);
+
+                if(result.Succeeded)
+                {
+                    TempData["Message"] = "Parolanız güncellendi";
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("",error.Description);
+                }
+            }
+
+        if(user == null)
+        {
+            return RedirectToAction("Login","Account");
+        }
+        }
+        return View(model);
+    }
+     [Authorize]
+    public async Task<ActionResult> EditUser()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var user = await _userManager.FindByIdAsync(userId!);
+
+        if(user == null)
+        {
+            return RedirectToAction("Login","Account");
+        }
+
+        return View(new AccountEditUserModel
+        {
+            FullName = user.FullName,
+            Email = user.Email!
+        });
+    }
+    [HttpPost]
+    [Authorize]
+    public async Task<ActionResult> EditUser(AccountEditUserModel model)
+
+    {
+
+        if(ModelState.IsValid)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId!);
+
+        if(user != null)
+        {
+           user.Email = model.Email;
+           user.FullName = model.FullName;
+           user.UserName = model.Email; 
+           
+           var result = await _userManager.UpdateAsync(user);
+
+           if(result.Succeeded)
+            {
+                TempData["Message"] = "Bilgileriniz Güncellendi";
+                 return RedirectToAction("EditUser");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("",error.Description);
+            }
+        }
+        }
+        return View(model);
+        
+    }
+
+    public ActionResult ForgotPassword()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<ActionResult> ForgotPassword(string email)
+    {
+        if(string.IsNullOrEmpty(email))
+        {
+            TempData["Message"] = "E posta adresinzi giriniz";
+            return View();
+        }
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if(user == null)
+        {
+            TempData["Message"] = "Bu e posta adresi kayıtlı değil";
+            return View();
+        }
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var url = Url.Action("ResetPassword","Account", new {userId = user.Id,token});
+        
+        var link = $"<a href = 'http://localhost:5225{url}'>Şifre yenile</a>";
+
+        await _emailService.SendEmailAsync(user.Email!,"Parola Sıfırlama",link);
+         TempData["Message"] = "E posta adresine şifre sıfırlama bağlantısı gönderildi";
+        return RedirectToAction("Login");
+    }
+    public async Task<ActionResult> ResetPassword(string userId,string token )
+    {
+        if(userId == null || token == null)
+        {
+            return RedirectToAction("Login");
+        }
+        var user =  await _userManager.FindByIdAsync(userId);
+
+        if(user  == null)
+        {
+            return RedirectToAction("Login");
+        }
+        var model = new AccountResetPasswordModel
+        {
+            Token = token,
+            Email = user.Email!
+        };
+        return View(model);
+
+
+    }
+    [HttpPost]
+    public async Task<ActionResult> ResetPassword(AccountResetPasswordModel model)
+    {
+        if(ModelState.IsValid)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if(user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user,model.Token,model.Password);
+
+            if(result.Succeeded)
+            {
+                TempData["Message"] = "Şifreniz Güncellendi";
+                return RedirectToAction("Login");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("",error.Description);
+            }
+        }
+        return View(model);
     }
 }

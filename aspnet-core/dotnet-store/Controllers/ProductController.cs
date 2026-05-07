@@ -1,10 +1,12 @@
 using dotnet_store.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dotnet_store.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class ProductController : Controller
 {
     private readonly DataContext _context;
@@ -13,6 +15,7 @@ public class ProductController : Controller
     {
         _context = context;
     }
+    [AllowAnonymous]
     public ActionResult List(string url, string q)
     {
         IQueryable<Product> query = _context.Products;
@@ -50,6 +53,7 @@ public class ProductController : Controller
         ViewBag.Categories = new SelectList(_context.Categories.ToList(),"Id","CategoryName",category);
         return View(products);
     }
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
         // var product = _context.Products.FirstOrDefault(x=>x.Id == id);
