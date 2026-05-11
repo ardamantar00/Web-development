@@ -93,3 +93,6 @@ _ReSharper*/
 
 # Benchmark
 BenchmarkDotNet.Artifacts/
+# Claude Code
+.claude/
+CLAUDE.md
