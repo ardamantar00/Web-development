@@ -58,6 +58,7 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 Controllers/
  AccountController.cs
  AdminController.cs
+ CartController.cs
  CategoryController.cs
  HomeController.cs
  ProductController.cs
@@ -496,6 +497,7 @@ Views/Account/
 Views/
  Admin/Index.cshtml
  AdminProduct/Index.cshtml
+ Cart/Index.cshtml
  Category/
   Create.cshtml
   Delete.cshtml
@@ -562,6 +564,7 @@ Views/Account/
 Views/
  Admin/Index.cshtml
  AdminProduct/Index.cshtml
+ Cart/Index.cshtml
  Category/
   Create.cshtml
   Delete.cshtml

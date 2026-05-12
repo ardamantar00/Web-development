@@ -5,6 +5,16 @@ public class Cart
     public int CartId { get; set; }
     public string CustomerId { get; set; } = null!;
     public List<CartItem> CartItems { get; set; } = new();
+
+    public double GetSubtotal()
+    {
+        return CartItems.Sum(i=>i.Product.Price * i.Amount);
+    }
+
+    public double Sum()
+    {
+         return CartItems.Sum(i=>i.Product.Price * i.Amount) * 1.2;
+    }
 }
 public class CartItem //Sepet Ürünü
 {

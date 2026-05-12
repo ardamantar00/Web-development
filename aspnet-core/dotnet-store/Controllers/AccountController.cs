@@ -12,11 +12,13 @@ public class AccountController : Controller
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private IEmailService _emailService;
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,IEmailService emailService)
+    private DataContext _context;
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService,DataContext context)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _emailService = emailService;
+        _context = context;
     }
     public ActionResult Create()
     {
@@ -48,8 +50,7 @@ public class AccountController : Controller
         return View();
     }
     [HttpPost]
-    public async Task<ActionResult> Login(AccountLoginModel model,string? returnUrl)
-
+    public async Task<ActionResult> Login(AccountLoginModel model, string? returnUrl)
     {
 
         if (ModelState.IsValid)
@@ -64,14 +65,18 @@ public class AccountController : Controller
                 if (result.Succeeded)
                 {
                     await _userManager.ResetAccessFailedCountAsync(user);
-                    await _userManager.SetLockoutEndDateAsync(user,null);
-                    if(!string.IsNullOrEmpty(returnUrl))
+                    await _userManager.SetLockoutEndDateAsync(user, null);
+
+                    await TransferCartToUser(user);
+                    
+
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Index","Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     // return RedirectToAction("Index", "Home");
                 }
@@ -80,7 +85,7 @@ public class AccountController : Controller
                     var lockoutDate = await _userManager.GetLockoutEndDateAsync(user);
                     var timeLeft = lockoutDate - DateTime.UtcNow;
                     var minutes = Math.Ceiling(timeLeft.Value.TotalMinutes);
-                    ModelState.AddModelError("",$"Hesabınız kilitlendi, lütfen {minutes} dk sonra tekrar deneyin");
+                    ModelState.AddModelError("", $"Hesabınız kilitlendi, lütfen {minutes} dk sonra tekrar deneyin");
                 }
                 else
                 {
@@ -94,11 +99,44 @@ public class AccountController : Controller
         }
         return View(model);
     }
-   [Authorize]
+
+    private async Task TransferCartToUser(AppUser user)
+    {
+       var userCart = await _context.Carts
+                                .Include(i => i.CartItems)
+                                .ThenInclude(i => i.Product)
+                                .Where(i => i.CustomerId == user.UserName)
+                                .FirstOrDefaultAsync();
+
+
+                     var cookieCart = await _context.Carts
+                                .Include(i => i.CartItems)
+                                .ThenInclude(i => i.Product)
+                                .Where(i => i.CustomerId == Request.Cookies["customerId"])
+                                .FirstOrDefaultAsync();
+
+                    foreach (var item in cookieCart?.CartItems!)
+                    {
+                        var cartItem = userCart?.CartItems.Where(i=>i.ProductId == item.ProductId).FirstOrDefault();
+                        if(cartItem != null)
+                        {
+                            cartItem.Amount += 1;
+                        }
+                        else
+                        {
+                            userCart?.CartItems.Add(new CartItem {ProductId = item.ProductId, Amount = item.Amount});
+                        }
+                        
+                    }
+                    _context.Carts.Remove(cookieCart);
+                    await _context.SaveChangesAsync();
+    }
+
+    [Authorize]
     public async Task<ActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("Login","Account");
+        return RedirectToAction("Login", "Account");
     }
     [Authorize]
     public ActionResult Settings()
@@ -120,39 +158,39 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId!);
 
             if (user != null)
             {
-                var result  = await _userManager.ChangePasswordAsync(user,model.OldPassword,model.Password);
+                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.Password);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     TempData["Message"] = "Parolanız güncellendi";
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("",error.Description);
+                    ModelState.AddModelError("", error.Description);
                 }
             }
 
-        if(user == null)
-        {
-            return RedirectToAction("Login","Account");
-        }
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
         return View(model);
     }
-     [Authorize]
+    [Authorize]
     public async Task<ActionResult> EditUser()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var user = await _userManager.FindByIdAsync(userId!);
 
-        if(user == null)
+        if (user == null)
         {
-            return RedirectToAction("Login","Account");
+            return RedirectToAction("Login", "Account");
         }
 
         return View(new AccountEditUserModel
@@ -167,33 +205,33 @@ public class AccountController : Controller
 
     {
 
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId!);
 
-        if(user != null)
-        {
-           user.Email = model.Email;
-           user.FullName = model.FullName;
-           user.UserName = model.Email; 
-           
-           var result = await _userManager.UpdateAsync(user);
-
-           if(result.Succeeded)
+            if (user != null)
             {
-                TempData["Message"] = "Bilgileriniz Güncellendi";
-                 return RedirectToAction("EditUser");
-            }
+                user.Email = model.Email;
+                user.FullName = model.FullName;
+                user.UserName = model.Email;
 
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("",error.Description);
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    TempData["Message"] = "Bilgileriniz Güncellendi";
+                    return RedirectToAction("EditUser");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
-        }
         }
         return View(model);
-        
+
     }
 
     public ActionResult ForgotPassword()
@@ -203,36 +241,36 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<ActionResult> ForgotPassword(string email)
     {
-        if(string.IsNullOrEmpty(email))
+        if (string.IsNullOrEmpty(email))
         {
             TempData["Message"] = "E posta adresinzi giriniz";
             return View();
         }
         var user = await _userManager.FindByEmailAsync(email);
 
-        if(user == null)
+        if (user == null)
         {
             TempData["Message"] = "Bu e posta adresi kayıtlı değil";
             return View();
         }
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        var url = Url.Action("ResetPassword","Account", new {userId = user.Id,token});
-        
+        var url = Url.Action("ResetPassword", "Account", new { userId = user.Id, token });
+
         var link = $"<a href = 'http://localhost:5225{url}'>Şifre yenile</a>";
 
-        await _emailService.SendEmailAsync(user.Email!,"Parola Sıfırlama",link);
-         TempData["Message"] = "E posta adresine şifre sıfırlama bağlantısı gönderildi";
+        await _emailService.SendEmailAsync(user.Email!, "Parola Sıfırlama", link);
+        TempData["Message"] = "E posta adresine şifre sıfırlama bağlantısı gönderildi";
         return RedirectToAction("Login");
     }
-    public async Task<ActionResult> ResetPassword(string userId,string token )
+    public async Task<ActionResult> ResetPassword(string userId, string token)
     {
-        if(userId == null || token == null)
+        if (userId == null || token == null)
         {
             return RedirectToAction("Login");
         }
-        var user =  await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(userId);
 
-        if(user  == null)
+        if (user == null)
         {
             return RedirectToAction("Login");
         }
@@ -248,18 +286,18 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<ActionResult> ResetPassword(AccountResetPasswordModel model)
     {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
 
-            if(user == null)
+            if (user == null)
             {
                 return RedirectToAction("Login");
             }
 
-            var result = await _userManager.ResetPasswordAsync(user,model.Token,model.Password);
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 TempData["Message"] = "Şifreniz Güncellendi";
                 return RedirectToAction("Login");
@@ -267,7 +305,7 @@ public class AccountController : Controller
 
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("",error.Description);
+                ModelState.AddModelError("", error.Description);
             }
         }
         return View(model);
