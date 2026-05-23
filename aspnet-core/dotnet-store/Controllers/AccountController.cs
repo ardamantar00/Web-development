@@ -13,7 +13,7 @@ public class AccountController : Controller
     private readonly SignInManager<AppUser> _signInManager;
     private IEmailService _emailService;
     private DataContext _context;
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService,DataContext context)
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService, DataContext context)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -68,7 +68,7 @@ public class AccountController : Controller
                     await _userManager.SetLockoutEndDateAsync(user, null);
 
                     await TransferCartToUser(user);
-                    
+
 
                     if (!string.IsNullOrEmpty(returnUrl))
                     {
@@ -102,34 +102,34 @@ public class AccountController : Controller
 
     private async Task TransferCartToUser(AppUser user)
     {
-       var userCart = await _context.Carts
-                                .Include(i => i.CartItems)
-                                .ThenInclude(i => i.Product)
-                                .Where(i => i.CustomerId == user.UserName)
-                                .FirstOrDefaultAsync();
+        var userCart = await _context.Carts
+                                 .Include(i => i.CartItems)
+                                 .ThenInclude(i => i.Product)
+                                 .Where(i => i.CustomerId == user.UserName)
+                                 .FirstOrDefaultAsync();
 
 
-                     var cookieCart = await _context.Carts
-                                .Include(i => i.CartItems)
-                                .ThenInclude(i => i.Product)
-                                .Where(i => i.CustomerId == Request.Cookies["customerId"])
-                                .FirstOrDefaultAsync();
+        var cookieCart = await _context.Carts
+                   .Include(i => i.CartItems)
+                   .ThenInclude(i => i.Product)
+                   .Where(i => i.CustomerId == Request.Cookies["customerId"])
+                   .FirstOrDefaultAsync();
 
-                    foreach (var item in cookieCart?.CartItems!)
-                    {
-                        var cartItem = userCart?.CartItems.Where(i=>i.ProductId == item.ProductId).FirstOrDefault();
-                        if(cartItem != null)
-                        {
-                            cartItem.Amount += 1;
-                        }
-                        else
-                        {
-                            userCart?.CartItems.Add(new CartItem {ProductId = item.ProductId, Amount = item.Amount});
-                        }
-                        
-                    }
-                    _context.Carts.Remove(cookieCart);
-                    await _context.SaveChangesAsync();
+        foreach (var item in cookieCart?.CartItems!)
+        {
+            var cartItem = userCart?.CartItems.Where(i => i.ProductId == item.ProductId).FirstOrDefault();
+            if (cartItem != null)
+            {
+                cartItem.Amount += 1;
+            }
+            else
+            {
+                userCart?.CartItems.Add(new CartItem { ProductId = item.ProductId, Amount = item.Amount });
+            }
+
+        }
+        _context.Carts.Remove(cookieCart);
+        await _context.SaveChangesAsync();
     }
 
     [Authorize]

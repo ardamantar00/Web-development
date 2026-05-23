@@ -25,21 +25,13 @@ public class CartController : Controller
     public async Task<ActionResult> AddToCart(int productId, int amount = 1)
     {
         var cart = await GetCart();
-        var item = cart.CartItems.Where(i => i.ProductId == productId).FirstOrDefault();
+        var product = await _context.Products.FirstOrDefaultAsync(i => i.Id == productId);
 
-        if (item != null)
+        if (product != null)
         {
-            item.Amount += 1;
+            cart.AddItem(product, amount);
+            await _context.SaveChangesAsync();
         }
-        else
-        {
-            cart.CartItems.Add(new CartItem
-            {
-                ProductId = productId,
-                Amount = amount
-            });
-        }
-        await _context.SaveChangesAsync();
         return RedirectToAction("Index", "Cart");
     }
 
@@ -65,26 +57,51 @@ public class CartController : Controller
                     Expires = DateTime.Now.AddMonths(1),
                     IsEssential = true
                 };
-                Response.Cookies.Append("customerId",customerId,cookieOptions);
+                Response.Cookies.Append("customerId", customerId, cookieOptions);
             }
 
-            cart = new Cart { CustomerId = customerId};
+            cart = new Cart { CustomerId = customerId };
             _context.Add(cart);
             await _context.SaveChangesAsync();
         }
         return cart;
     }
     [HttpPost]
-    public async Task<ActionResult> RemoveItem(int cartItemId)
+    public async Task<ActionResult> IncreaseItem(int productId)
     {
         var cart = await GetCart();
-        var item = cart.CartItems.Where(i => i.CartItemId == cartItemId).FirstOrDefault();
-
+        var item = cart.CartItems.FirstOrDefault(i => i.ProductId == productId);
         if (item != null)
         {
-            cart.CartItems.Remove(item);
+            item.Amount += 1;
             await _context.SaveChangesAsync();
         }
+        return RedirectToAction("Index", "Cart");
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> DecreaseItem(int productId)
+    {
+        var cart = await GetCart();
+        var item = cart.CartItems.FirstOrDefault(i => i.ProductId == productId);
+        if (item != null)
+        {
+            item.Amount -= 1;
+            if (item.Amount <= 0)
+                _context.Remove(item);
+            await _context.SaveChangesAsync();
+        }
+        return RedirectToAction("Index", "Cart");
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> RemoveItem(int productId)
+    {
+        var cart = await GetCart();
+        var item = cart.CartItems.FirstOrDefault(i => i.ProductId == productId);
+        if (item != null)
+            _context.Remove(item); 
+        await _context.SaveChangesAsync();
         return RedirectToAction("Index", "Cart");
     }
 }

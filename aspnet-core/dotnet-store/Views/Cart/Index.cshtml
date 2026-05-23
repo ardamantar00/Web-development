@@ -44,17 +44,27 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <input type="number" value="@item.Amount" class="form-control" min = 1>
+                                    <div class="d-flex align-items-center justify-content-center gap-2">
+                                        <form action="/Cart/DecreaseItem" method="post">
+                                            <input type="hidden" name="productId" value="@item.ProductId">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
+                                        </form>
+                                        <span class="fw-semibold px-1">@item.Amount</span>
+                                        <form action="/Cart/IncreaseItem" method="post">
+                                            <input type="hidden" name="productId" value="@item.ProductId">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div class="col-2 text-center">
                                     <span class="fw-bold">@item.Product.Price ₺</span>
                                 </div>
                                 <div class="col-1">
                                     <form action="/Cart/RemoveItem" method="post">
-                                    <input type="hidden" name="cartItemId" value="@item.CartItemId">
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                         <i class="fa-solid fa-trash-can"></i>
-                                    </button>
+                                        <input type="hidden" name="productId" value="@item.ProductId">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
