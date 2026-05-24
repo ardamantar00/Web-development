@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using dotnet_store.Models;
+using dotnet_store.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,13 +13,15 @@ public class AccountController : Controller
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private IEmailService _emailService;
+    private readonly ICartService _cartService;
     private DataContext _context;
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService, DataContext context)
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService, DataContext context,ICartService cartService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _emailService = emailService;
         _context = context;
+        _cartService = cartService;
     }
     public ActionResult Create()
     {
@@ -67,7 +70,7 @@ public class AccountController : Controller
                     await _userManager.ResetAccessFailedCountAsync(user);
                     await _userManager.SetLockoutEndDateAsync(user, null);
 
-                    await TransferCartToUser(user);
+                    await  _cartService.TransferCartToUser(user.UserName!);
 
 
                     if (!string.IsNullOrEmpty(returnUrl))
