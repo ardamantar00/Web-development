@@ -96,3 +96,5 @@ BenchmarkDotNet.Artifacts/
 # Claude Code
 .claude/
 CLAUDE.md
+
+appsettings.Development.json
