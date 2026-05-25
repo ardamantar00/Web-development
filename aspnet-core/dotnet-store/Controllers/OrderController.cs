@@ -2,6 +2,7 @@ using dotnet_store.Models;
 using dotnet_store.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace dotnet_store.Controllers;
 
 [Authorize]
@@ -18,6 +19,28 @@ public class OrderController : Controller
     {
         ViewBag.Cart = await _cartService.GetCart(User.Identity?.Name!);
         return View();
+    }
+    [Authorize(Roles = "Admin")]
+    public ActionResult Index()
+    {
+        var orders = _context.Orders
+            .OrderByDescending(o => o.OrderTime)
+            .ToList();
+        return View(orders);
+    }
+
+    [Authorize(Roles = "Admin")]
+    public ActionResult Details(int id)
+    {
+        var order = _context.Orders
+            .Include(o => o.OrderItems)
+                .ThenInclude(i => i.Product)
+            .FirstOrDefault(o => o.Id == id);
+
+        if (order == null)
+            return NotFound();
+
+        return View(order);
     }
     [HttpPost]
     public async Task<ActionResult> CheckOut(OrderCreateModel model)
@@ -63,5 +86,30 @@ public class OrderController : Controller
     public ActionResult Completed(string orderId)
     {
         return View("Completed",orderId);
+    }
+
+    public ActionResult MyOrders()
+    {
+        var username = User.Identity?.Name!;
+        var orders = _context.Orders
+            .Where(o => o.Username == username)
+            .Include(o => o.OrderItems)
+            .OrderByDescending(o => o.OrderTime)
+            .ToList();
+        return View(orders);
+    }
+
+    public ActionResult MyOrderDetail(int id)
+    {
+        var username = User.Identity?.Name!;
+        var order = _context.Orders
+            .Include(o => o.OrderItems)
+                .ThenInclude(i => i.Product)
+            .FirstOrDefault(o => o.Id == id && o.Username == username);
+
+        if (order == null)
+            return NotFound();
+
+        return View(order);
     }
 }

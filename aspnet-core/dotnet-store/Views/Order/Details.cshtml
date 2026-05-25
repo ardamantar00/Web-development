@@ -1,0 +1,126 @@
+@model dotnet_store.Models.Order
+@{
+    Layout = "_AdminLayout";
+    var araTopam = Model.OrderItems.Sum(i => i.Price * i.Amount);
+    var vergi    = araTopam * 0.2;
+    var toplam   = Model.TotalPrice;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">Sipariş #@Model.Id</h5>
+    <a asp-controller="Order" asp-action="Index" class="btn btn-sm btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left me-1"></i> Siparişlere Dön
+    </a>
+</div>
+
+<div class="row g-3">
+    @* Ürün Tablosu *@
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header">
+                <h6 class="card-title mb-0">Sipariş Kalemleri</h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped mb-0 table-hover">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th style="width:40px">Id</th>
+                                <th style="width:80px">Resim</th>
+                                <th>Ürün Adı</th>
+                                <th style="width:120px">Fiyat</th>
+                                <th style="width:70px" class="text-center">Adet</th>
+                                <th style="width:130px" class="text-end">Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td class="align-middle">@item.Id</td>
+                                    <td>
+                                        <img src="~/img/@item.Product.Image" alt="@item.Product.ProductName" class="img-fluid" style="max-width:64px;" />
+                                    </td>
+                                    <td class="align-middle">@item.Product.ProductName</td>
+                                    <td class="align-middle">@item.Price.ToString("N0") ₺</td>
+                                    <td class="text-center align-middle">@item.Amount</td>
+                                    <td class="text-end align-middle">@((item.Price * item.Amount).ToString("N0")) ₺</td>
+                                </tr>
+                            }
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Ara Toplam</td>
+                                <td class="text-end">@araTopam.ToString("N0") ₺</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Vergi</td>
+                                <td class="text-end">@vergi.ToString("N0") ₺ (%20)</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Kargo</td>
+                                <td class="text-end text-success">Ücretsiz</td>
+                            </tr>
+                            <tr class="fw-bold table-light">
+                                <td colspan="4"></td>
+                                <td class="fs-6">Toplam</td>
+                                <td class="text-end fs-6 text-primary">@toplam.ToString("N0") ₺</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Teslimat / Fatura Bilgileri *@
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header">
+                <h6 class="card-title mb-0">Teslimat &amp; Ödeme Bilgileri</h6>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-bordered mb-0">
+                    <tbody>
+                        <tr>
+                            <td style="width:180px" class="text-muted">Sipariş Tarihi</td>
+                            <td>@Model.OrderTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Tahmini Teslim</td>
+                            <td>@Model.OrderTime.AddDays(3).ToString("dd.MM.yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Ad Soyad</td>
+                            <td>@Model.FullName</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Telefon</td>
+                            <td>@Model.Telephone</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Teslimat Adresi</td>
+                            <td>@Model.CityRow / @Model.City &nbsp;—&nbsp; Posta Kodu: @Model.PostalCode</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Fatura Adresi</td>
+                            <td>@Model.CityRow / @Model.City &nbsp;—&nbsp; Posta Kodu: @Model.PostalCode</td>
+                        </tr>
+                        @if (!string.IsNullOrEmpty(Model.OrderNote))
+                        {
+                            <tr>
+                                <td class="text-muted">Sipariş Notu</td>
+                                <td>@Model.OrderNote</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="text-muted">Ödeme Bilgileri</td>
+                            <td class="text-muted fst-italic">— Kart ödeme sistemi entegre edilecek —</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

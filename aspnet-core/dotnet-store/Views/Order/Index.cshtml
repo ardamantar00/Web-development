@@ -1,0 +1,60 @@
+@model List<dotnet_store.Models.Order>
+@{
+    Layout = "_AdminLayout";
+}
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Siparişler</h5>
+                <span class="badge bg-secondary">@Model.Count sipariş</span>
+            </div>
+            <div class="card-body">
+                @if (!Model.Any())
+                {
+                    <div class="alert alert-info mb-0">Henüz sipariş bulunmuyor.</div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover mb-0">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th style="width:60px">#</th>
+                                    <th>Müşteri</th>
+                                    <th>Şehir / İlçe</th>
+                                    <th>Telefon</th>
+                                    <th>Toplam</th>
+                                    <th>Tarih</th>
+                                    <th style="width:60px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model)
+                                {
+                                    <tr>
+                                        <td>@order.Id</td>
+                                        <td>
+                                            <div class="fw-semibold">@order.FullName</div>
+                                            <small class="text-muted">@order.Username</small>
+                                        </td>
+                                        <td>@order.City / @order.CityRow</td>
+                                        <td>@order.Telephone</td>
+                                        <td class="fw-semibold text-primary">@order.TotalPrice.ToString("N2") ₺</td>
+                                        <td>@order.OrderTime.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td>
+                                            <a asp-controller="Order" asp-action="Details" asp-route-id="@order.Id"
+                                               class="btn btn-sm btn-primary" title="Detay">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

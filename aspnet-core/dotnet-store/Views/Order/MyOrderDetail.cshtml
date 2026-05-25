@@ -1,0 +1,132 @@
+@model dotnet_store.Models.Order
+@{
+    var araTopam = Model.OrderItems.Sum(i => i.Price * i.Amount);
+    var vergi    = araTopam * 0.2;
+}
+
+@section Bar {
+    <section class="bg-primary p-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-controller="Order" asp-action="MyOrders">Siparişlerim</a>
+                    </li>
+                    <li class="breadcrumb-item">Sipariş #@Model.Id</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+}
+
+<section class="mt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @await Html.PartialAsync("Partials/Site/_AccountSideBar")
+            </div>
+
+            <div class="col-md-9">
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Sipariş #@Model.Id</h5>
+                        <small class="text-muted">@Model.OrderTime.ToString("dd.MM.yyyy HH:mm")</small>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped mb-0 table-hover">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th style="width:70px">Resim</th>
+                                        <th>Ürün Adı</th>
+                                        <th style="width:110px" class="text-end">Birim Fiyat</th>
+                                        <th style="width:70px" class="text-center">Adet</th>
+                                        <th style="width:120px" class="text-end">Toplam</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="~/img/@item.Product.Image" alt="@item.Product.ProductName"
+                                                     style="width:54px;height:54px;object-fit:cover;" class="rounded" />
+                                            </td>
+                                            <td class="align-middle">@item.Product.ProductName</td>
+                                            <td class="text-end align-middle">@item.Price.ToString("N0") ₺</td>
+                                            <td class="text-center align-middle">@item.Amount</td>
+                                            <td class="text-end align-middle fw-semibold">@((item.Price * item.Amount).ToString("N0")) ₺</td>
+                                        </tr>
+                                    }
+                                    <tr class="fw-semibold">
+                                        <td colspan="3"></td>
+                                        <td>Ara Toplam</td>
+                                        <td class="text-end">@araTopam.ToString("N0") ₺</td>
+                                    </tr>
+                                    <tr class="fw-semibold">
+                                        <td colspan="3"></td>
+                                        <td>Vergi (%20)</td>
+                                        <td class="text-end">@vergi.ToString("N0") ₺</td>
+                                    </tr>
+                                    <tr class="fw-semibold">
+                                        <td colspan="3"></td>
+                                        <td>Kargo</td>
+                                        <td class="text-end text-success">Ücretsiz</td>
+                                    </tr>
+                                    <tr class="fw-bold table-light">
+                                        <td colspan="3"></td>
+                                        <td class="fs-6">Toplam</td>
+                                        <td class="text-end fs-6 text-primary">@Model.TotalPrice.ToString("N0") ₺</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="card-title mb-0">Teslimat Bilgileri</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr>
+                                    <td style="width:170px" class="text-muted">Ad Soyad</td>
+                                    <td>@Model.FullName</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">Telefon</td>
+                                    <td>@Model.Telephone</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">Adres</td>
+                                    <td>@Model.CityRow / @Model.City — Posta Kodu: @Model.PostalCode</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">Tahmini Teslim</td>
+                                    <td>@Model.OrderTime.AddDays(3).ToString("dd.MM.yyyy")</td>
+                                </tr>
+                                @if (!string.IsNullOrEmpty(Model.OrderNote))
+                                {
+                                    <tr>
+                                        <td class="text-muted">Sipariş Notu</td>
+                                        <td>@Model.OrderNote</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a asp-controller="Order" asp-action="MyOrders" class="btn btn-sm btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Siparişlerime Dön
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
