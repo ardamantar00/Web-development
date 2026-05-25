@@ -1,0 +1,29 @@
+@model string
+
+@section Bar {
+    <section class="bg-primary p-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Ana Sayfa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        Sipariş Tamamlandı
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+}
+<section class="mt-5">
+    <div class="container text-center">
+        <div class="card mx-auto" style="max-width: 500px;">
+            <div class="card-body py-5">
+                <h2 class="h4 mb-3">Siparişiniz Alındı!</h2>
+                <p class="text-muted">Sipariş numaranız: <strong>#@Model</strong></p>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">Alışverişe Devam Et</a>
+            </div>
+        </div>
+    </div>
+</section>

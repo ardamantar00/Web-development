@@ -1,0 +1,123 @@
+@model OrderCreateModel
+
+@section Bar {
+    <section class="bg-primary p-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Ana Sayfa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        Siparişi Tamamla
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+}
+<section class="mt-3">
+    <div class="container">
+        <form asp-controller="Order" asp-action="CheckOut" method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="h5">Sipariş Detay</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label asp-for="FullName" class="form-label"></label>
+                                <input asp-for="FullName" class="form-control">
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label asp-for="Telephone" class="form-label"></label>
+                                <input asp-for="Telephone" class="form-control">
+                                <span asp-validation-for="Telephone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label asp-for="City" class="form-label"></label>
+                                <input asp-for="City" class="form-control">
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <label asp-for="CityRow" class="form-label"></label>
+                                <input asp-for="CityRow" class="form-control">
+                                <span asp-validation-for="CityRow" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label asp-for="PostalCode" class="form-label"></label>
+                                <input asp-for="PostalCode" class="form-control">
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label asp-for="OrderNote" class="form-label"></label>
+                                <textarea asp-for="OrderNote" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="OrderNote" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="h5">Sepetim</h2>
+                    </div>
+                    <div class="card-body">
+                        @{
+                            var cart = ViewBag.Cart as dotnet_store.Models.Cart;
+                        }
+                        @if (cart != null && cart.CartItems.Any())
+                        {
+                            <ul class="list-group list-group-flush mb-3">
+                                @foreach (var item in cart.CartItems)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <div>
+                                            <span class="fw-semibold">@item.Product.ProductName</span>
+                                            <small class="text-muted d-block">@item.Amount adet</small>
+                                        </div>
+                                        <span>@((item.Product.Price * item.Amount).ToString("C2"))</span>
+                                    </li>
+                                }
+                            </ul>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between px-0">
+                                    <span>Ara Toplam</span>
+                                    <span>@cart.GetSubtotal().ToString("C2")</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between px-0">
+                                    <span>KDV (%20)</span>
+                                    <span>@((cart.Sum() - cart.GetSubtotal()).ToString("C2"))</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between px-0 fw-bold">
+                                    <span>Toplam</span>
+                                    <span>@cart.Sum().ToString("C2")</span>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <p class="text-muted mb-0">Sepetiniz boş.</p>
+                        }
+                    </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark">Alışverişe Devam</a>
+                    <button type="submit" class="btn btn-success">Siparişi Tamamla</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</section>

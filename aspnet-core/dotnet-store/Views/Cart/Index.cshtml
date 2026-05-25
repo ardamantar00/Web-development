@@ -73,39 +73,35 @@
                 </ul>
             </div>
             <div class="col-lg-5">
-                <div class="my-3 card">
-                    <div class="p-3 card-body">
-                        <h2 class="h5 mb-4">Sipariş Özeti</h2>
-                        <div class="card mb-2">
-                            <div class="list-group list-group-flush">
-                                <div class="d-flex justify-content-center align-items-center list-group-item">
-                                    <div class="me-auto">
-                                        <div>Sipariş Toplamı</div>
-                                    </div>
-                                    <span>@Model.GetSubtotal() ₺</span>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center list-group-item">
-                                    <div class="me-auto">
-                                        <div>Kargo Ücreti</div>
-                                    </div>
-                                    <span>Ücretsiz</span>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center list-group-item">
-                                    <div class="me-auto">
-                                        <div>Vergiler(%20)</div>
-                                    </div>
-                                    <span>@(Model.GetSubtotal() * 0.2) ₺</span>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center list-group-item">
-                                    <div class="me-auto">
-                                        <div>Toplam</div>
-                                    </div>
-                                    <span>@Model.Sum() ₺</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="my-3 card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h2 class="h5 mb-0 fw-semibold">Sipariş Özeti</h2>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table mb-0">
+                            <tbody>
+                                <tr>
+                                    <td class="text-muted ps-3">Ara Toplam</td>
+                                    <td class="text-end pe-3 fw-semibold">@Model.GetSubtotal().ToString("N2") ₺</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted ps-3">Kargo</td>
+                                    <td class="text-end pe-3 text-success fw-semibold">Ücretsiz</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted ps-3">KDV (%20)</td>
+                                    <td class="text-end pe-3 fw-semibold">@((Model.GetSubtotal() * 0.2).ToString("N2")) ₺</td>
+                                </tr>
+                                <tr class="table-light">
+                                    <td class="ps-3 fw-bold fs-6">Toplam</td>
+                                    <td class="text-end pe-3 fw-bold fs-6 text-primary">@Model.Sum().ToString("N2") ₺</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer bg-white border-0 pb-3">
                         <div class="d-grid">
-                            <a href="#" class="btn btn-primary btn-lg">
+                            <a asp-controller="Order" asp-action="CheckOut" class="btn btn-primary btn-lg">
                                 Siparişi Tamamla
                             </a>
                         </div>
