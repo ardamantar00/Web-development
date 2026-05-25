@@ -14,6 +14,11 @@ public class Order
     public double TotalPrice { get; set; }
     public string? OrderNote { get; set; }
 
+    public string? CardName { get; set; }
+    public string? CardLastFour { get; set; }
+    public string? CardExpirationMonth { get; set; }
+    public string? CardExpirationYear { get; set; }
+
     public List<OrderItem> OrderItems { get; set; } = new();
 }
 

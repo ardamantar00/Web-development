@@ -114,10 +114,32 @@
                                 <td>@Model.OrderNote</td>
                             </tr>
                         }
-                        <tr>
-                            <td class="text-muted">Ödeme Bilgileri</td>
-                            <td class="text-muted fst-italic">— Kart ödeme sistemi entegre edilecek —</td>
-                        </tr>
+                        @if (!string.IsNullOrEmpty(Model.CardLastFour))
+                        {
+                            <tr>
+                                <td class="text-muted">Kart Sahibi</td>
+                                <td>@Model.CardName</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Kart Numarası</td>
+                                <td>
+                                    <span style="letter-spacing:.1em;font-family:monospace;">
+                                        •••• •••• •••• @Model.CardLastFour
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Son Kullanma</td>
+                                <td style="font-family:monospace;">@Model.CardExpirationMonth / @Model.CardExpirationYear</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-muted">Ödeme Bilgileri</td>
+                                <td class="text-muted fst-italic">— Kart bilgisi kaydedilmemiş —</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

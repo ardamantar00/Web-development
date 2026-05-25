@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    options.UseSqlite(connectionString);
+    options.UseSqlServer(connectionString);
 });
 builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 builder.Services.Configure<IdentityOptions>(options =>
